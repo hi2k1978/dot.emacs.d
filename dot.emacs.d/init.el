@@ -11,7 +11,6 @@
 
 
 (package-initialize)
-(init-loader-load)
 (set-language-environment "Japanese")
 (set-default-coding-systems 'utf-8)
 (set-keyboard-coding-system 'utf-8)
@@ -55,4 +54,6 @@
 
 (setq browse-url "chrome")
 
+(require 'init-loader)
+(init-loader-load "~/.emacs.d/loader")
 
