@@ -1,6 +1,12 @@
 istdalled packages:
+  - leaf.el
   - init-loader
+  - emacs-wallpaper
   - ddskk
   - w3m
   - web-mode
   - yaml-mode
+
+
+
+
