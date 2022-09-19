@@ -49,7 +49,8 @@
 ;;;grobal-set-key
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\C-c\C-f" 'load-file)
-(global-set-key "\C-c\C-g" 'goto-line)
+(global-set-key "\C-c\C-c" 'comment-or-uncomment-region)
+;(global-set-key "\C-c\C-g" 'goto-line) ;; M-gg
 
 
 (setq browse-url "chrome")
