@@ -53,11 +53,37 @@
     ;; initialize leaf-keywords.el
     (leaf-keywords-init)))
 
+;;
 ;; ここにいっぱい設定を書く
-;;(load-theme 'tango t)
-(load-theme 'tango-dark t)
+;;
+(leaf leaf
+  :config
+  (leaf leaf-convert :ensure t)
+  (leaf leaf-tree
+    :ensure t
+    :custom ((imenu-list-size . 30)
+             (imenu-list-position . 'left))))
+
+(leaf leaf-manager
+  :ensure t)
+
+(leaf macrostep
+  :ensure t
+  :bind (("C-c e" . macrostep-expand)))
+
+;; (load-theme 'tango t)
+;; (load-theme 'tango-dark t)
 ;; (load-theme 'nova t)
-;;(load-theme 'misterioso t)
+(load-theme 'misterioso t)
+(leaf cas-start
+  :when window-system
+  :config
+  (set-frame-parameter nil 'alpha 93)
+  ;; (set-background-color "Dark Green")
+  ;; (set-foreground-color "LightGray")
+  ;; (set-cursor-color "Gray")
+  )
+
 
 (leaf cus-edit
   :doc "tools for customizing Emacs and Lisp packages"
@@ -97,6 +123,47 @@
            (show-paren-mode . t)
            )
   )
+(leaf *minor-mode
+  :config
+  (leaf posframe
+    :ensure t
+    :when (version<= "26.1" emacs-version)
+    :when window-system
+    :config
+    (leaf ivy-posframe
+      :doc "Using posframe to show Ivy"
+      :after ivy
+      :ensure t
+      :custom ((ivy-posframe-mode . t)
+               (ivy-posframe-height-alist . '((swiper . 30) (t . 40)))
+               (ivy-posframe-display-functions-alist
+                . '((swiper . nil) (t . ivy-posframe-display-at-frame-center)))
+               (ivy-posframe-parameters . '((left-fringe . 10)))))
+
+    (leaf company-posframe
+      :doc "Use a posframe as company candidate menu"
+      :ensure t
+      :after company
+      :custom ((company-posframe-mode . t)))
+
+    (leaf flycheck-posframe
+      :ensure t
+      :after flycheck
+      :custom ((flycheck-posframe-mode . t)))
+
+    (leaf which-key-posframe
+      :ensure t
+      :after which-key
+      :custom ((which-key-posframe-mode . t)))
+
+    (leaf ddskk-posframe
+      :doc "Show Henkan tooltip for ddskk via posframe"
+      :after skk
+      :el-get conao3/ddskk-posframe.el
+      :custom ((ddskk-posframe-mode . t))))
+
+  ;; other minor-mode packages...
+  )
 
 (leaf autorevert
   :doc "revert buffers when files on disk change"
@@ -126,18 +193,6 @@
            (kill-whole-line . t)
            (eval-expression-print-length . nil)
            (eval-expression-print-level . nil)))
-
-(leaf leaf
-  :config
-  (leaf leaf-convert :ensure t)
-  (leaf leaf-tree
-    :ensure t
-    :custom ((imenu-list-size . 30)
-             (imenu-list-position . 'left))))
-
-(leaf macrostep
-  :ensure t
-  :bind (("C-c e" . macrostep-expand)))
 
 (leaf ivy
   :doc "Incremental Vertical completYon"
@@ -184,7 +239,7 @@
   :ensure t
   :custom ((prescient-aggressive-file-save . t))
   :global-minor-mode prescient-persist-mode)
- 
+
 (leaf ivy-prescient
   :doc "prescient.el + Ivy"
   :req "emacs-25.1" "prescient-4.0" "ivy-0.11.0"
@@ -243,6 +298,40 @@
   :config
   (add-to-list 'company-backends 'company-c-headers))
 
+(leaf ddskk
+  :ensure t
+  :bind
+  ("C-x C-t" . skk-mode)
+  :setq
+  (skk-preload . t)
+  (default-input-method . "japanese-skk"))
+
+(leaf magit
+  :doc "A Git porcelain inside Emacs."
+  :req "emacs-25.1" "compat-28.1.1.2" "dash-20210826" "git-commit-20220222" "magit-section-20220325" "transient-20220325" "with-editor-20220318"
+  :tag "vc" "tools" "git" "emacs>=25.1"
+  :url "https://github.com/magit/magit"
+  :added "2022-09-21"
+  :emacs>= 25.1
+  :ensure t
+  :after compat git-commit magit-section with-editor)
+
+(leaf wallpaper
+  :doc "Setting the wallpaper"
+  :req "emacs-25.1"
+  :tag "extensions" "wallpaper" "unix" "emacs>=25.1"
+  :url "https://github.com/farlado/emacs-wallpaper"
+  :added "2022-09-21"
+  :emacs>= 25.1
+  :ensure t
+  ;; :setq
+  ;; (0 "~/Pictures/wallpapers/shibu-rin1.jpg")
+  )
+
+;;
+;; ここにいっぱい設定を書く
+;;
+
 (provide 'init)
 
 ;; Local Variables:
@@ -250,6 +339,4 @@
 ;; End:
 
 ;;; init.el ends here
-
-
 
