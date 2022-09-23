@@ -466,18 +466,6 @@
   (plantuml-jar-path . "/usr/share/plantuml/plantuml.jar")
   (plantuml-exec-mode quote jar))
 
-;; (leaf wallpaper
-;;   :doc "Setting the wallpaper"
-;;   :req "emacs-25.1"
-;;   :tag "extensions" "wallpaper" "unix" "emacs>=25.1"
-;;   :url "https://github.com/farlado/emacs-wallpaper"
-;;   :added "2022-09-21"
-;;   :emacs>= 25.1
-;;   :ensure t
-;;   ;; :setq
-;;   ;; (0 "~/Pictures/wallpapers/shibu-rin1.jpg")
-;;   )
-
 ;;
 ;; END: ここにいっぱい設定を書く
 ;;
