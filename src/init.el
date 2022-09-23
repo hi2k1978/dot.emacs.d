@@ -72,6 +72,11 @@
   :bind
   ("C-c e" . macrostep-expand))
 
+(leaf zenburn-theme
+  :doc "A low contrast color theme for Emacs."
+  :url "http://github.com/bbatsov/zenburn-emacs"
+  :added "2022-09-23"
+  :ensure t)
 ;; (load-theme 'tango t)
 ;; (load-theme 'tango-dark t)
 ;;(load-theme 'misterioso t)              
@@ -99,6 +104,7 @@
   ("C-M-c" . comment-or-uncomment-region)
   ("C-c C-f" . load-file)
   ("C-h" . delete-backward-char)
+  ("M-h" . backward-kill-word)
   ("M-ESC ESC" . c/redraw-frame)
   :custom
   (display-time-mode . t)
@@ -465,6 +471,12 @@
   :custom
   (plantuml-jar-path . "/usr/share/plantuml/plantuml.jar")
   (plantuml-exec-mode quote jar))
+
+(leaf w3m
+  :doc "an Emacs interface to w3m"
+  :tag "hypermedia" "www" "w3m"
+  :added "2022-09-23"
+  :ensure t)
 
 ;;
 ;; END: ここにいっぱい設定を書く

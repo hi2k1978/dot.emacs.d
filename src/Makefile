@@ -1,6 +1,4 @@
 #SUBDIRS=$(shell ls -d */)
-DEST=~/.emacs.d/init.el
-SRC=./init.el
 
 .PHONY: all clean byte-compile emacs kill $(SUBDIRS)
 
