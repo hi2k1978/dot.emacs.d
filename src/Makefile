@@ -1,6 +1,6 @@
 #SUBDIRS=$(shell ls -d */)
 
-.PHONY: all clean build emacs stop $(SUBDIRS)
+.PHONY: all clean build run stop $(SUBDIRS)
 
 all:
 	@echo "this is a collections of my sample progpams written by C++"
@@ -14,7 +14,7 @@ $(SUBDIRS):
 build:
 	@echo byte-compile ~/.emacs.d/init.el
 	@emacs --batch -f batch-byte-compile init.el
-emacs:
+run:
 	@\emacs init.el
 
 stop:
