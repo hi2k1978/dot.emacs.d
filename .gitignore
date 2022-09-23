@@ -1,3 +1,6 @@
+# never register
+custom.el
+
 # Compiled
 *.elc
 
@@ -12,4 +15,5 @@
 # Undo-tree save-files
 *.~undo-tree
 
+# download files
 *.tar.gz
