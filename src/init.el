@@ -443,6 +443,31 @@
          ("\\.ts[x]?$" . web-mode)
          ("\\.vue$" . web-mode)))
 
+(leaf csharp-mode
+  :doc "C# mode derived mode"
+  :req "emacs-26.1"
+  :tag "mode" "oop" "languages" "c#" "emacs>=26.1"
+  :url "https://github.com/emacs-csharp/csharp-mode"
+  :added "2022-09-24"
+  :emacs>= 26.1
+  :ensure t)
+
+;; (leaf lsp-csharp
+;;   :doc "description"
+;;   :tag "out-of-MELPA"
+;;   :added "2022-09-24"
+;;   :el-get {{user}/lsp-csharp
+;;   :require t)
+
+(leaf go-mode
+  :doc "Major mode for the Go programming language"
+  :req "emacs-26.1"
+  :tag "go" "languages" "emacs>=26.1"
+  :url "https://github.com/dominikh/go-mode.el"
+  :added "2022-09-24"
+  :emacs>= 26.1
+  :ensure t)
+
 (leaf yaml-mode
   :doc "Major mode for editing YAML files"
   :req "emacs-24.1"
