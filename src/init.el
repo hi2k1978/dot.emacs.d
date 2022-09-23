@@ -258,7 +258,7 @@
 
 (leaf neotree
   :ensure t
-  :bind ("H-t" . neotree-toggle))
+  :bind ("C-c C-t" . neotree-toggle))
 
 (leaf ivy
   :doc "Incremental Vertical completYon"
