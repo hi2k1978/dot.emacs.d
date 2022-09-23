@@ -256,6 +256,16 @@
   :hook
   (prog-mode-hook . highlight-indent-guides-mode))
 
+(leaf google-this
+  :doc "A set of functions and bindings to google under point."
+  :req "emacs-24.1"
+  :tag "hypermedia" "convenience" "emacs>=24.1"
+  :url "http://github.com/Malabarba/emacs-google-this"
+  :added "2022-09-23"
+  :emacs>= 24.1
+  :ensure t
+  :bind ("C-c C-g" . google-this))
+
 (leaf neotree
   :ensure t
   :bind ("C-c C-t" . neotree-toggle))
