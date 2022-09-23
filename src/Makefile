@@ -17,7 +17,7 @@ byte-compile:
 	@echo byte-compile ~/.emacs.d/init.el
 	@emacs --batch -f batch-byte-compile init.el
 emacs:
-	@\emacs ~/.emacs.d/init.el
+	@\emacs init.el
 
 kill:
 	@echo process kill emacs

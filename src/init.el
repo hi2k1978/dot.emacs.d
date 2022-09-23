@@ -54,7 +54,7 @@
     (leaf-keywords-init)))
 
 ;;
-;; ここにいっぱい設定を書く
+;; BEGIN: ここにいっぱい設定を書く
 ;;
 (leaf leaf
   :config
@@ -74,7 +74,8 @@
 
 ;; (load-theme 'tango t)
 ;; (load-theme 'tango-dark t)
-(load-theme 'misterioso t)
+;;(load-theme 'misterioso t)              
+(load-theme 'zenburn t)
 
 ;; emacsclient
 (add-hook 'before-make-frame-hook
@@ -177,7 +178,8 @@
   :doc "major mode for editing C and similar languages"
   :tag "builtin"
   :defvar (c-basic-offset)
-  :bind (c-mode-base-map ("C-c c" . compile))
+  :bind
+  ("C-c c" . compile)
   :mode-hook
   (c-mode-hook . ((c-set-style "bsd") (setq c-basic-offset 4)))
   (c++-mode-hook . ((c-set-style "bsd") (setq c-basic-offset 4))))
@@ -209,6 +211,54 @@
            (kill-whole-line . t)
            (eval-expression-print-length . nil)
            (eval-expression-print-level . nil)))
+
+(leaf beacon
+  :ensure t
+  ;; :diminish beacon-mode
+  :require t
+  :config
+  (beacon-mode 1))
+
+(leaf typescript-mode
+  :ensure t
+  :custom
+  (typescript-indent-level . 2)
+  )
+
+(leaf rainbow-mode
+  :ensure t
+  :leaf-defer t
+  :hook
+  (web-mode-hook . rainbow-mode))
+
+(leaf rainbow-delimiters
+  :ensure t
+  :leaf-defer t
+  :hook
+  (prog-mode-hook . rainbow-delimiters-mode))
+
+(leaf fontawesome
+  :ensure t)
+
+(leaf codic
+  :ensure t
+  :leaf-defer t)
+
+
+(leaf highlight-indent-guides
+  :ensure t
+  :require t
+  ;; :diminish highlight-indent-guides-mode
+  :custom
+  (highlight-indent-guides-method . 'character)
+  (highlight-indent-guides-auto-character-face-perc . 20)
+  (highlight-indent-guides-character . ?\|)
+  :hook
+  (prog-mode-hook . highlight-indent-guides-mode))
+
+(leaf neotree
+  :ensure t
+  :bind ("H-t" . neotree-toggle))
 
 (leaf ivy
   :doc "Incremental Vertical completYon"
@@ -406,21 +456,20 @@
   (plantuml-jar-path . "/usr/share/plantuml/plantuml.jar")
   (plantuml-exec-mode quote jar))
 
-(leaf leaf-convert
-  :doc "Setting the wallpaper"
-  :req "emacs-25.1"
-  :tag "extensions" "wallpaper" "unix" "emacs>=25.1"
-  :url "https://github.com/farlado/emacs-wallpaper"
-  :added "2022-09-21"
-  :emacs>= 25.1
-  :ensure t
-  ;; :setq
-  ;; (0 "~/Pictures/wallpapers/shibu-rin1.jpg")
-  )
-
+;; (leaf wallpaper
+;;   :doc "Setting the wallpaper"
+;;   :req "emacs-25.1"
+;;   :tag "extensions" "wallpaper" "unix" "emacs>=25.1"
+;;   :url "https://github.com/farlado/emacs-wallpaper"
+;;   :added "2022-09-21"
+;;   :emacs>= 25.1
+;;   :ensure t
+;;   ;; :setq
+;;   ;; (0 "~/Pictures/wallpapers/shibu-rin1.jpg")
+;;   )
 
 ;;
-;; ここにいっぱい設定を書く
+;; END: ここにいっぱい設定を書く
 ;;
 
 (provide 'init)
