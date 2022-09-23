@@ -1,15 +1,19 @@
-SUBDIRS=$(shell ls -d */)
+#SUBDIRS=$(shell ls -d */)
 DEST=~/.emacs.d/init.el
 SRC=./init.el
-.PHONY: all clean  $(SUBDIRS) replace
+
+.PHONY: all clean byte-compile kill $(SUBDIRS)
+
 all:
 	@echo "this is a collections of my sample progpams written by C++"
+
 clean: $(SUBDIRS)
-	@\rm -rf \#* *~ \.\#*
+	@\rm -rf \#* *~ \.\#* *.elc
 
 $(SUBDIRS):
 	$(MAKE) -C $@ $(MAKECMDGOALS)
 
-replace:
-	@echo "copy file: $(SRC) -> $(DEST)"
-	@cp $(SRC) $(DEST)
+byte-compile:
+	@emacs --batch -f batch-byte-compile init.el
+kill:
+	@pkill emacs
