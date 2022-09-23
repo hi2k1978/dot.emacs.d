@@ -79,7 +79,7 @@
   :ensure t)
 ;; (load-theme 'tango t)
 ;; (load-theme 'tango-dark t)
-;;(load-theme 'misterioso t)              
+;; (load-theme 'misterioso t)
 (load-theme 'zenburn t)
 
 ;; emacsclient
@@ -399,7 +399,10 @@
   :added "2022-09-23"
   :emacs>= 26.1
   :ensure t
-  :after spinner markdown-mode lv)
+  ;; :hook
+  ;; (prog-major-mode . lsp-prog-major-mode-enable)
+  ;; :after spinner markdown-mode lv
+  )
 
 
 (leaf ddskk
