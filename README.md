@@ -7,6 +7,11 @@
 - posframeによるモダンインターフェース
 - テーマはzenburnを採用
 
+## build with native compilation
+- https://taingram.org/blog/emacs-native-comp.html
+  - Install libgccjit, the native compiler used by Emacs:
+    > sudo apt-get install libgccjit0 libgccjit-10-dev
+
 ## dot.skk
 - dvorak配列用ローマ字かな変換ルールリスト
 
