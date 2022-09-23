@@ -76,21 +76,16 @@
 ;; (load-theme 'tango-dark t)
 (load-theme 'misterioso t)
 
-
-
+;; emacsclient
 (add-hook 'before-make-frame-hook
       #'(lambda ()
           (add-to-list 'default-frame-alist '(alpha . 93))))
+
+;; !emacsclient
 (leaf cus-start
   :when window-system
   :config
-  (set-frame-parameter nil 'alpha 93)
-  )
-
-(leaf cus-edit
-  :doc "tools for customizing Emacs and Lisp packages"
-  :tag "builtin" "faces" "help"
-  :custom `((custom-file . ,(locate-user-emacs-file "custom.el"))))
+  (set-frame-parameter nil 'alpha 93))
 
 (leaf cus-start
   :doc "define customization properties of builtins"
@@ -99,35 +94,36 @@
   (defun c/redraw-frame nil
     (interactive)
     (redraw-frame))
-  ;; :hook
-  ;; (before-make-frame-hook
-  ;;  . (lambda () (set-frame-parameter nil 'alpha 93)))
   :bind
   ("C-M-c" . comment-or-uncomment-region)
   ("C-c C-f" . load-file)
   ("C-h" . delete-backward-char)
   ("M-ESC ESC" . c/redraw-frame)
-  :custom (
-           (display-time-mode . t)
-           (visible-bell . t)
-           (visual-line-mode . t)
-           (fill-column . 60)
-           (truncate-lines . t)
-           (truncate-partial-width-windows . t)
-           (auto-image-file-mode . t)
-           (next-line-add-newlines . t)
-           (auto-fill-mode . t)
-           (transient-mark-mode . t)
-           (global-linum-mode . t)
-           (global-whitespace-mode . t)
-           (global-hl-line-mode . t)
-           (auto-image-file-mode . t)
-           (auto-compression-mode . t)
-           (auto-fill-mode . nil)
-           (tool-bar-mode . t)
-           (show-paren-mode . t)
-           )
+  :custom
+  (display-time-mode . t)
+  (visible-bell . t)
+  (visual-line-mode . t)
+  (fill-column . 120)
+  (truncate-lines . t)
+  (truncate-partial-width-windows . t)
+  (auto-image-file-mode . t)
+  (next-line-add-newlines . t)
+  (auto-fill-mode . t)
+  (transient-mark-mode . t)
+  (global-linum-mode . t)
+  (global-whitespace-mode . nil)
+  (global-hl-line-mode . t)
+  (auto-image-file-mode . t)
+  (auto-compression-mode . t)
+  (auto-fill-mode . nil)
+  (tool-bar-mode . t)
+  (show-paren-mode . t)
   )
+
+(leaf cus-edit
+  :doc "tools for customizing Emacs and Lisp packages"
+  :tag "builtin" "faces" "help"
+  :custom `((custom-file . ,(locate-user-emacs-file "custom.el"))))
 
 (leaf *minor-mode
   :config
@@ -186,19 +182,24 @@
   (c-mode-hook . ((c-set-style "bsd") (setq c-basic-offset 4)))
   (c++-mode-hook . ((c-set-style "bsd") (setq c-basic-offset 4))))
 
+;; (leaf term
+;;   :bind
+;;   ("C-x o" . other-window))
+
+
 (leaf delsel
   :doc "delete selection if you insert"
   :tag "builtin"
   :global-minor-mode delete-selection-mode)
 
-(leaf dimmer
-  :doc "Visually highlight the selected buffer"
-  :req "emacs-25.1"
-  :tag "editing" "faces" "emacs>=25.1"
-  :url "https://github.com/gonewest818/dimmer.el"
-  :added "2022-09-23"
-  :emacs>= 25.1
-  :ensure t)
+;; (leaf dimmer
+;;   :doc "Visually highlight the selected buffer"
+;;   :req "emacs-25.1"
+;;   :tag "editing" "faces" "emacs>=25.1"
+;;   :url "https://github.com/gonewest818/dimmer.el"
+;;   :added "2022-09-23"
+;;   :emacs>= 25.1
+;;   :ensure t)
 
 (leaf simple
   :doc "basic editing commands for Emacs"
@@ -218,8 +219,9 @@
   :ensure t
   :blackout t
   :leaf-defer nil
-  :custom ((ivy-initial-inputs-alist . nil)
-           (ivy-use-selectable-prompt . t))
+  :custom
+  (ivy-initial-inputs-alist . nil)
+  (ivy-use-selectable-prompt . t)
   :global-minor-mode t
   :config
   (leaf swiper
@@ -229,7 +231,8 @@
     :url "https://github.com/abo-abo/swiper"
     :emacs>= 24.5
     :ensure t
-    :bind (("C-s" . swiper)))
+    :bind
+    ("C-s" . swiper))
 
   (leaf counsel
     :doc "Various completion functions using Ivy"
@@ -239,8 +242,9 @@
     :emacs>= 24.5
     :ensure t
     :blackout t
-    :bind (("C-S-s" . counsel-imenu)
-           ("C-x C-r" . counsel-recentf))
+    :bind
+    ("C-S-s" . counsel-imenu)
+    ("C-x C-r" . counsel-recentf)
     :custom `((counsel-yank-pop-separator . "\n----------\n")
               (counsel-find-file-ignore-regexp . ,(rx-to-string '(or "./" "../") 'no-group)))
     :global-minor-mode t))
@@ -273,8 +277,9 @@
   :url "http://www.flycheck.org"
   :emacs>= 24.3
   :ensure t
-  :bind (("M-n" . flycheck-next-error)
-         ("M-p" . flycheck-previous-error))
+  :bind
+  ("M-n" . flycheck-next-error)
+  ("M-p" . flycheck-previous-error)
   :global-minor-mode global-flycheck-mode)
 
 
