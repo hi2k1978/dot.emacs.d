@@ -125,6 +125,7 @@
   (auto-fill-mode . nil)
   (tool-bar-mode . t)
   (show-paren-mode . t)
+  (electric-pair-mode . t)
   )
 
 (leaf cus-edit
