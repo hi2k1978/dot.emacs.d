@@ -219,6 +219,13 @@
            (eval-expression-print-length . nil)
            (eval-expression-print-level . nil)))
 
+(leaf windmove
+  :doc "directional window-selection routines"
+  :tag "builtin"
+  :added "2022-09-25"
+  :config
+  (windmove-default-keybindings 'meta))
+
 (leaf beacon
   :ensure t
   ;; :diminish beacon-mode
@@ -511,6 +518,14 @@
   :added "2022-09-23"
   :ensure t)
 
+(leaf vlc
+  :doc "VideoLAN VLC Media Player Control"
+  :req "emacs-25.1"
+  :tag "tools" "emacs>=25.1"
+  :url "https://github.com/xuchunyang/vlc.el"
+  :added "2022-09-25"
+  :emacs>= 25.1
+  :ensure t)
 ;;
 ;; END: ここにいっぱい設定を書く
 ;;
