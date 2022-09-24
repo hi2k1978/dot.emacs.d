@@ -17,3 +17,6 @@ custom.el
 
 # download files
 *.tar.gz
+
+# distfiles
+distfiles/
