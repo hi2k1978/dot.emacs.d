@@ -470,7 +470,11 @@
   :url "https://github.com/dominikh/go-mode.el"
   :added "2022-09-24"
   :emacs>= 26.1
-  :ensure t)
+  :ensure t
+  :init
+  (indent-tabs-mode . nil)
+  (c-basic-offset . 4)
+  (tab-width . 4))
 
 (leaf yaml-mode
   :doc "Major mode for editing YAML files"
