@@ -472,9 +472,9 @@
   :emacs>= 26.1
   :ensure t
   :init
-  (indent-tabs-mode . nil)
-  (c-basic-offset . 4)
-  (tab-width . 4))
+  (setq indent-tabs-mode nil)
+  (setq c-basic-offset 4)
+  (setq tab-width 4))
 
 (leaf yaml-mode
   :doc "Major mode for editing YAML files"
