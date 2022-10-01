@@ -87,6 +87,11 @@
       #'(lambda ()
           (add-to-list 'default-frame-alist '(alpha . 93))))
 
+;; supress warnings
+(leaf warnings
+  :custom
+  (warning-suppress-types . '((comp))))
+
 ;; !emacsclient
 (leaf cus-start
   :when window-system
