@@ -1,0 +1,6 @@
+(setq skk-egg-like-newline t)
+(setq skk-show-annotation nil)
+(setq skk-auto-insert-paren t)
+(setq skk-byte-compile-init-file t)
+(setq skk-isearch-mode-enable 'always)
+(setq skk-kakutei-key (kbd "C-j"))
