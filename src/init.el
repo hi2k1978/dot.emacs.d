@@ -115,6 +115,8 @@
   (display-time-mode . t)
   (visible-bell . t)
   (visual-line-mode . t)
+  (line-number-mode . t)
+  (column-number-mode . t)
   (fill-column . 120)
   (truncate-lines . t)
   (truncate-partial-width-windows . t)
