@@ -390,7 +390,8 @@
   :custom ((company-idle-delay . 0)
            (company-minimum-prefix-length . 1)
            (company-transformers . '(company-sort-by-occurrence)))
-  :global-minor-mode global-company-mode)
+  :global-minor-mode global-company-mode
+  :ensure t)
 
 (leaf company-c-headers
   :doc "Company mode backend for C/C++ header files"
