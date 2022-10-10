@@ -3,7 +3,7 @@
 .PHONY: all clean build run stop $(SUBDIRS)
 
 all:
-	@echo "this is a collections of my sample progpams written by C++"
+	@echo "emacs lisp init files"
 
 clean: $(SUBDIRS)
 	@\rm -rf \#* *~ \.\#* *.elc
