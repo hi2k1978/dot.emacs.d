@@ -42,7 +42,6 @@
     (package-install 'leaf))
 
   (leaf leaf-keywords
-    :ensure t
     :init
     ;; optional packages if you want to use :hydra, :el-get, :blackout,,,
     (leaf hydra :ensure t)
@@ -51,7 +50,8 @@
 
     :config
     ;; initialize leaf-keywords.el
-    (leaf-keywords-init)))
+    (leaf-keywords-init))
+    :ensure t)
 
 ;;
 ;; BEGIN: ここにいっぱい設定を書く
@@ -60,17 +60,17 @@
   :config
   (leaf leaf-convert :ensure t)
   (leaf leaf-tree
-    :ensure t
     :custom ((imenu-list-size . 30)
-             (imenu-list-position . 'left))))
+             (imenu-list-position . 'left)))
+    :ensure t)
 
 (leaf leaf-manager
   :ensure t)
 
 (leaf macrostep
-  :ensure t
   :bind
-  ("C-c e" . macrostep-expand))
+  ("C-c e" . macrostep-expand)
+    :ensure t)
 
 (leaf zenburn-theme
   :doc "A low contrast color theme for Emacs."
@@ -143,41 +143,41 @@
 (leaf *minor-mode
   :config
   (leaf posframe
-    :ensure t
     :when (version<= "26.1" emacs-version)
     :when window-system
     :config
     (leaf ivy-posframe
       :doc "Using posframe to show Ivy"
       :after ivy
-      :ensure t
       :custom ((ivy-posframe-mode . t)
                (ivy-posframe-height-alist . '((swiper . 30) (t . 40)))
                (ivy-posframe-display-functions-alist
                 . '((swiper . nil) (t . ivy-posframe-display-at-frame-center)))
-               (ivy-posframe-parameters . '((left-fringe . 10)))))
+               (ivy-posframe-parameters . '((left-fringe . 10))))
+      :ensure t)
 
     (leaf company-posframe
       :doc "Use a posframe as company candidate menu"
-      :ensure t
       :after company
-      :custom ((company-posframe-mode . t)))
+      :custom ((company-posframe-mode . t))
+      :ensure t)
 
     (leaf flycheck-posframe
-      :ensure t
       :after flycheck
-      :custom ((flycheck-posframe-mode . t)))
+      :custom ((flycheck-posframe-mode . t))
+      :ensure t)
 
     (leaf which-key-posframe
-      :ensure t
       :after which-key
-      :custom ((which-key-posframe-mode . t)))
+      :custom ((which-key-posframe-mode . t))
+      :ensure t)
 
     (leaf ddskk-posframe
       :doc "Show Henkan tooltip for ddskk via posframe"
       :after skk
       :el-get conao3/ddskk-posframe.el
-      :custom ((ddskk-posframe-mode . t))))
+      :custom ((ddskk-posframe-mode . t)))
+    :ensure t)
 
   ;; other minor-mode packages...
   )
@@ -234,40 +234,38 @@
   (windmove-default-keybindings 'meta))
 
 (leaf beacon
-  :ensure t
   ;; :diminish beacon-mode
   :require t
   :config
-  (beacon-mode 1))
+  (beacon-mode 1)
+  :ensure t)
 
 ;; (leaf typescript-mode
-;;   :ensure t
 ;;   :custom
 ;;   (typescript-indent-level . 2)
-;;   )
+;;   :ensure t)
 
 (leaf rainbow-mode
-  :ensure t
   :leaf-defer t
   :hook
-  (web-mode-hook . rainbow-mode))
+  (web-mode-hook . rainbow-mode)
+  :ensure t)
 
 (leaf rainbow-delimiters
-  :ensure t
   :leaf-defer t
   :hook
-  (prog-mode-hook . rainbow-delimiters-mode))
+  (prog-mode-hook . rainbow-delimiters-mode)
+  :ensure t)
 
 (leaf fontawesome
   :ensure t)
 
 (leaf codic
-  :ensure t
-  :leaf-defer t)
+  :leaf-defer t
+  :ensure t)
 
 
 (leaf highlight-indent-guides
-  :ensure t
   :require t
   ;; :diminish highlight-indent-guides-mode
   :custom
@@ -275,7 +273,8 @@
   (highlight-indent-guides-auto-character-face-perc . 20)
   (highlight-indent-guides-character . ?\|)
   :hook
-  (prog-mode-hook . highlight-indent-guides-mode))
+  (prog-mode-hook . highlight-indent-guides-mode)
+  :ensure t)
 
 (leaf google-this
   :doc "A set of functions and bindings to google under point."
@@ -284,12 +283,12 @@
   :url "http://github.com/Malabarba/emacs-google-this"
   :added "2022-09-23"
   :emacs>= 24.1
-  :ensure t
-  :bind ("C-c C-g" . google-this))
+  :bind ("C-c C-g" . google-this)
+  :ensure t)
 
 (leaf neotree
-  :ensure t
-  :bind ("C-c t" . neotree-toggle))
+  :bind ("C-c t" . neotree-toggle)
+  :ensure t)
 
 (leaf ivy
   :doc "Incremental Vertical completYon"
@@ -297,7 +296,6 @@
   :tag "matching" "emacs>=24.5"
   :url "https://github.com/abo-abo/swiper"
   :emacs>= 24.5
-  :ensure t
   :blackout t
   :leaf-defer nil
   :custom
@@ -311,9 +309,9 @@
     :tag "matching" "emacs>=24.5"
     :url "https://github.com/abo-abo/swiper"
     :emacs>= 24.5
-    :ensure t
     :bind
-    ("C-s" . swiper))
+    ("C-s" . swiper)
+    :ensure t)
 
   (leaf counsel
     :doc "Various completion functions using Ivy"
@@ -321,14 +319,15 @@
     :tag "tools" "matching" "convenience" "emacs>=24.5"
     :url "https://github.com/abo-abo/swiper"
     :emacs>= 24.5
-    :ensure t
     :blackout t
     :bind
     ("C-S-s" . counsel-imenu)
     ("C-x C-r" . counsel-recentf)
     :custom `((counsel-yank-pop-separator . "\n----------\n")
               (counsel-find-file-ignore-regexp . ,(rx-to-string '(or "./" "../") 'no-group)))
-    :global-minor-mode t))
+    :global-minor-mode t
+    :ensure t)
+  :ensure t)
 
 (leaf prescient
   :doc "Better sorting and filtering"
@@ -336,9 +335,9 @@
   :tag "extensions" "emacs>=25.1"
   :url "https://github.com/raxod502/prescient.el"
   :emacs>= 25.1
-  :ensure t
   :custom ((prescient-aggressive-file-save . t))
-  :global-minor-mode prescient-persist-mode)
+  :global-minor-mode prescient-persist-mode
+  :ensure t)
 
 (leaf ivy-prescient
   :doc "prescient.el + Ivy"
@@ -346,10 +345,10 @@
   :tag "extensions" "emacs>=25.1"
   :url "https://github.com/raxod502/prescient.el"
   :emacs>= 25.1
-  :ensure t
   :after prescient ivy
   :custom ((ivy-prescient-retain-classic-highlighting . t))
-  :global-minor-mode t)
+  :global-minor-mode t
+  :ensure t)
 
 (leaf flycheck
   :doc "On-the-fly syntax checking"
@@ -357,11 +356,11 @@
   :tag "minor-mode" "tools" "languages" "convenience" "emacs>=24.3"
   :url "http://www.flycheck.org"
   :emacs>= 24.3
-  :ensure t
   :bind
   ("M-n" . flycheck-next-error)
   ("M-p" . flycheck-previous-error)
-  :global-minor-mode global-flycheck-mode)
+  :global-minor-mode global-flycheck-mode
+  :ensure t)
 
 
 ;; (leaf flymake
@@ -376,7 +375,6 @@
   :tag "matching" "convenience" "abbrev" "emacs>=24.3"
   :url "http://company-mode.github.io/"
   :emacs>= 24.3
-  :ensure t
   :blackout t
   :leaf-defer nil
   :bind ((company-active-map
@@ -400,11 +398,11 @@
   :tag "company" "development" "emacs>=24.1"
   :added "2020-03-25"
   :emacs>= 24.1
-  :ensure t
   :after company
   :defvar company-backends
   :config
-  (add-to-list 'company-backends 'company-c-headers))
+  (add-to-list 'company-backends 'company-c-headers)
+  :ensure t)
 
 (leaf lsp-mode
   :doc "LSP mode"
@@ -413,20 +411,19 @@
   :url "https://github.com/emacs-lsp/lsp-mode"
   :added "2022-09-23"
   :emacs>= 26.1
-  :ensure t
   ;; :hook
   ;; (prog-major-mode . lsp-prog-major-mode-enable)
   ;; :after spinner markdown-mode lv
-  )
+  :ensure t)
 
 
 (leaf ddskk
-  :ensure t
   :bind
   ("C-x C-t" . skk-mode)
   :setq
   (skk-preload . t)
-  (default-input-method . "japanese-skk"))
+  (default-input-method . "japanese-skk")
+  :ensure t)
 
 (leaf magit
   :doc "A Git porcelain inside Emacs."
@@ -435,8 +432,8 @@
   :url "https://github.com/magit/magit"
   :added "2022-09-21"
   :emacs>= 25.1
-  :ensure t
-  :after compat git-commit magit-section with-editor)
+  :after compat git-commit magit-section with-editor
+  :ensure t)
 
 (leaf prettier
   :doc "Code formatting with Prettier"
@@ -445,9 +442,9 @@
   :url "https://github.com/jscheid/prettier.el"
   :added "2022-09-22"
   :emacs>= 26.1
-  :ensure t
   :hook
-  (web-mode-hook . prettier-mode))
+  (web-mode-hook . prettier-mode)
+  :ensure t)
 
 (leaf web-mode
   :doc "major mode for editing web templates"
@@ -456,10 +453,11 @@
   :url "https://web-mode.org"
   :added "2022-09-22"
   :emacs>= 23.1
-  :ensure t
-  :mode (("\\.js[x]?$" . web-mode)
-         ("\\.ts[x]?$" . web-mode)
-         ("\\.vue$" . web-mode)))
+  :mode
+  ("\\.js[x]?$" . web-mode)
+  ("\\.ts[x]?$" . web-mode)
+  ("\\.vue$" . web-mode)
+  :ensure t)
 
 (leaf csharp-mode
   :doc "C# mode derived mode"
@@ -484,11 +482,11 @@
   :url "https://github.com/dominikh/go-mode.el"
   :added "2022-09-24"
   :emacs>= 26.1
-  :ensure t
   :init
   (setq indent-tabs-mode nil)
   (setq c-basic-offset 4)
-  (setq tab-width 4))
+  (setq tab-width 4)
+  :ensure t)
 
 (leaf yaml-mode
   :doc "Major mode for editing YAML files"
@@ -514,10 +512,10 @@
   :tag "ascii" "plantuml" "uml" "emacs>=25.0"
   :added "2022-09-23"
   :emacs>= 25.0
-  :ensure t
   :custom
   (plantuml-jar-path . "/usr/share/plantuml/plantuml.jar")
-  (plantuml-exec-mode quote jar))
+  (plantuml-exec-mode quote jar)
+  :ensure t)
 
 (leaf w3m
   :doc "an Emacs interface to w3m"
