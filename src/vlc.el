@@ -3,51 +3,53 @@
 ;;; Commentary:
 ;;
 
+(require 'cl-lib)
 ;;; Code:
 (defgroup vlc nil
   "Vlc control in Emacs."
   :group 'lisp
   :prefix "vlc-")
 
-(defvar vlc-repeat nil) ;; nil t
-(defvar vlc-shuffle nil) ;; nil o 1
-(defvar vlc-volume 50) ;; 0 - 100
+(defvar vlc-prefs-repeat nil) ;; nil t
+(defvar vlc-prefs-shuffle nil) ;; nil o 1
+(defvar vlc-prefs-volume 50) ;; 0 - 100
 (defvar vlc-max-depth 3)
-(defvar vlc-data (make-hash-table :test 'equal))
+(defvar vlc-sound-file-alist)
+(defvar vlc-ignore-dirs "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)")
 
-(defun vlc ()
+(cl-defun vlc ()
   "Vlc Mode."
   (interactive)
   (message "vlc-mode"))
 
-(defun vlc-value-or-empty-string (val)
+(cl-defun vlc-value-or-empty-string (val)
   "Return VAL when VAL is not Nil.  Else return ''(empty string)."
   (format "%s" (or val "")))
 
-(defun vlc-set-one-record-data (&rest args)
-  "Record data is created from ARTIST, ALBUM, TITLE, ARGS."
-  (defvar vlc-one-record-hash (make-hash-table :test 'equal))
-  (puthash "artist" (vlc-value-or-empty-string (plist-get args :artist)) vlc-one-record-hash)
-  (puthash "album" (vlc-value-or-empty-string (plist-get args :album)) vlc-one-record-hash)
-  (puthash "title" (vlc-value-or-empty-string (plist-get args :title)) vlc-one-record-hash)
-  (puthash "year" (vlc-value-or-empty-string (plist-get args :year)) vlc-one-record-hash)
-  vlc-one-record-hash)
+(cl-defun vlc-sound-file-data-alist (&key file artist album title &allow-other-keys)
+  "Record data is created from FILE, ARTIST, ALBUM, TITLE."
+  (list (cons 'file (vlc-value-or-empty-string file))
+	(cons 'artist (vlc-value-or-empty-string artist))
+	(cons 'album (vlc-value-or-empty-string album))
+	(cons 'title (vlc-value-or-empty-string title))))
 
-(vlc-set-one-record-data :artist "higedan" :album "hige" :title "dan")
-(vlc-set-one-record-data :artist "king-gnu" :title "gnu")
+(vlc-sound-file-data-alist :file "file1" :artist "higedan" :album "hige" :title "dan" :year "2002")
+(assoc-default 'artist (vlc-sound-file-data-alist :file "file1" :artist "higedan" :album "hige" :title "dan"))
+(vlc-sound-file-data-alist :artist "king-gnu" :title "gnu")
 
-(defun vlc-get-sound-files-from-directory (directory depth)
-  "Read music files in directory DIR, DEPTH."
-  (let (sound-files
-	(candidates (directory-files directory t "^\\([^.]\\|\\.[^.]\\|\\.\\..\\)")))
-    (dolist (target candidates)
-      (when (and (> depth 0) (file-directory-p target))
-	(setq sound-files (vlc-get-sound-files-from-directory target (1- depth))))
-      (when (file-readable-p target)
-	(setq sound-files (append sound-files (list target)))))
-    sound-files))
+(cl-defun vlc-get-sound-files-from-directory (directory depth)
+  "Read music files in DIRECTORY recursively.  maxdepth is DEPTH."
+  (let (results (candidates (directory-files directory t vlc-ignore-dirs)))
+    (cond ((zerop depth) nil)
+	  (t (dolist (target candidates)
+	       (when (file-directory-p target)
+		 (setq results (vlc-get-sound-files-from-directory target (1- depth))))
+	       (when (file-readable-p target)
+		 (setq results (append results (list target)))))
+	     results))))
 
 (vlc-get-sound-files-from-directory "." vlc-max-depth)
+(vlc-get-sound-files-from-directory "." 1)
 
 (puthash 0
 	 (vlc-set-one-record-data :artist "higedan" :album "hige" :title "dan")

@@ -363,11 +363,11 @@
   :ensure t)
 
 
-;; (leaf flymake
-;;   :doc "A universal on-the-fly syntax checker"
-;;   :tag "builtin"
-;;   :added "2022-09-22"
-;;   :ensure t)
+(leaf flymake
+  :doc "A universal on-the-fly syntax checker"
+  :tag "builtin"
+  :added "2022-09-22"
+  :ensure nil)
 
 (leaf company
   :doc "Modular text completion framework"
