@@ -217,6 +217,12 @@
 ;;   :emacs>= 25.1
 ;;   :ensure t)
 
+(leaf paren
+  :doc "highlight matching paren"
+  :tag "builtin"
+  :custom ((show-paren-delay . 0.1))
+  :global-minor-mode show-paren-mode)
+
 (leaf simple
   :doc "basic editing commands for Emacs"
   :tag "builtin" "internal"
@@ -225,6 +231,22 @@
            (kill-whole-line . t)
            (eval-expression-print-length . nil)
            (eval-expression-print-level . nil)))
+
+(leaf files
+  :doc "file input and output commands for Emacs"
+  :tag "builtin"
+  :custom `((auto-save-timeout . 15)
+            (auto-save-interval . 60)
+            (auto-save-file-name-transforms . '((".*" ,(locate-user-emacs-file "backup/") t)))
+            (backup-directory-alist . '((".*" . ,(locate-user-emacs-file "backup"))
+                                        (,tramp-file-name-regexp . nil)))
+            (version-control . t)
+            (delete-old-versions . t)))
+
+(leaf startup
+  :doc "process Emacs shell arguments"
+  :tag "builtin" "internal"
+  :custom `((auto-save-list-file-prefix . ,(locate-user-emacs-file "backup/.saves-"))))
 
 (leaf windmove
   :doc "directional window-selection routines"
@@ -507,6 +529,16 @@
   :emacs>= 26.1
   :ensure t)
 
+(leaf mermaid-mode
+  :doc "major mode for working with mermaid graphs"
+  :req "f-0.20.0" "emacs-25.3"
+  :tag "processes" "tools" "graphs" "mermaid" "emacs>=25.3"
+  :url "https://github.com/abrochard/mermaid-mode"
+  :added "2022-11-23"
+  :emacs>= 25.3
+  :ensure t)
+
+
 (leaf plantuml-mode
   :doc "Major mode for PlantUML"
   :req "dash-2.0.0" "emacs-25.0"
@@ -516,6 +548,17 @@
   :custom
   (plantuml-jar-path . "/usr/share/plantuml/plantuml.jar")
   (plantuml-exec-mode quote jar)
+  :ensure t)
+
+(leaf csv-mode
+  :doc "Major mode for editing comma/char separated values"
+  :req "emacs-27.1" "cl-lib-0.5"
+  :tag "convenience" "emacs>=27.1"
+  :url "https://elpa.gnu.org/packages/csv-mode.html"
+  :added "2022-11-23"
+  :emacs>= 27.1
+  :after
+  (csv-align-fields)
   :ensure t)
 
 (leaf w3m
