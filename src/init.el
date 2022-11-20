@@ -217,6 +217,12 @@
 ;;   :emacs>= 25.1
 ;;   :ensure t)
 
+(leaf paren
+  :doc "highlight matching paren"
+  :tag "builtin"
+  :custom ((show-paren-delay . 0.1))
+  :global-minor-mode show-paren-mode)
+
 (leaf simple
   :doc "basic editing commands for Emacs"
   :tag "builtin" "internal"
@@ -225,6 +231,22 @@
            (kill-whole-line . t)
            (eval-expression-print-length . nil)
            (eval-expression-print-level . nil)))
+
+(leaf files
+  :doc "file input and output commands for Emacs"
+  :tag "builtin"
+  :custom `((auto-save-timeout . 15)
+            (auto-save-interval . 60)
+            (auto-save-file-name-transforms . '((".*" ,(locate-user-emacs-file "backup/") t)))
+            (backup-directory-alist . '((".*" . ,(locate-user-emacs-file "backup"))
+                                        (,tramp-file-name-regexp . nil)))
+            (version-control . t)
+            (delete-old-versions . t)))
+
+(leaf startup
+  :doc "process Emacs shell arguments"
+  :tag "builtin" "internal"
+  :custom `((auto-save-list-file-prefix . ,(locate-user-emacs-file "backup/.saves-"))))
 
 (leaf windmove
   :doc "directional window-selection routines"
