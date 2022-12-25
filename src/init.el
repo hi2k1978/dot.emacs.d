@@ -511,6 +511,15 @@
   (setq tab-width 4)
   :ensure t)
 
+(leaf dockerfile-mode
+  :doc "Major mode for editing Docker's Dockerfiles"
+  :req "emacs-24"
+  :tag "tools" "processes" "languages" "docker" "emacs>=24"
+  :url "https://github.com/spotify/dockerfile-mode"
+  :added "2022-12-25"
+  :emacs>= 24
+  :ensure t)
+
 (leaf yaml-mode
   :doc "Major mode for editing YAML files"
   :req "emacs-24.1"
@@ -546,8 +555,11 @@
   :added "2022-09-23"
   :emacs>= 25.0
   :custom
+  (plantuml-output-type . "png")
   (plantuml-jar-path . "/usr/share/plantuml/plantuml.jar")
-  (plantuml-exec-mode quote jar)
+  (plantuml-default-exec-mode . 'jar)
+  ;;(plantuml-executable-path . "/usr/local/bin/plantuml")
+  ;;(plantuml-default-exec-mode . 'executable)
   :ensure t)
 
 (leaf csv-mode
