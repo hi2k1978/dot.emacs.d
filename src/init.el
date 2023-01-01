@@ -447,6 +447,14 @@
   (web-mode-hook . prettier-mode)
   :ensure t)
 
+(leaf cmake-mode
+  :doc "major-mode for editing CMake sources"
+  :req "emacs-24.1"
+  :tag "emacs>=24.1"
+  :added "2023-01-02"
+  :emacs>= 24.1
+  :ensure t)
+
 (leaf web-mode
   :doc "major mode for editing web templates"
   :req "emacs-23.1"

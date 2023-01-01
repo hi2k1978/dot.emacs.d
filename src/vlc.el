@@ -51,15 +51,6 @@
 (vlc-get-sound-files-from-directory "." vlc-max-depth)
 (vlc-get-sound-files-from-directory "." 1)
 
-(puthash 0
-	 (vlc-set-one-record-data :artist "higedan" :album "hige" :title "dan")
-	 vlc-data)
-(puthash 1
-	 (vlc-set-one-record-data :artist "king-gnu" :title "gnu")
-	 vlc-data)
-vlc-data
-(gethash "artist" (gethash 0 vlc-data))
-
 
 
 
