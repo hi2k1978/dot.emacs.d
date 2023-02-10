@@ -130,7 +130,7 @@
   (auto-image-file-mode . t)
   (auto-compression-mode . t)
   (auto-fill-mode . nil)
-  (tool-bar-mode . t)
+  (tool-bar-mode . nil)
   (show-paren-mode . t)
   (electric-pair-mode . t)
   )
@@ -607,3 +607,4 @@
 
 ;;; init.el ends here
 
+(put 'narrow-to-region 'disabled nil)
