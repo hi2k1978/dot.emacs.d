@@ -279,6 +279,12 @@
   (prog-mode-hook . rainbow-delimiters-mode)
   :ensure t)
 
+(leaf highlight-indentation
+    :doc "Minor modes for highlighting indentation"
+    :url "https://github.com/antonj/Highlight-Indentation-for-Emacs"
+    :added "2023-03-04"
+    :ensure t)
+
 (leaf fontawesome
   :ensure t)
 
