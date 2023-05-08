@@ -112,27 +112,29 @@
   ("M-h" . backward-kill-word)
   ("M-ESC ESC" . c/redraw-frame)
   :custom
-  (display-time-mode . t)
-  (visible-bell . t)
-  (visual-line-mode . t)
-  (line-number-mode . t)
-  (column-number-mode . t)
-  (fill-column . 120)
-  (truncate-lines . t)
-  (truncate-partial-width-windows . t)
-  (auto-image-file-mode . t)
-  (next-line-add-newlines . t)
-  (auto-fill-mode . t)
-  (transient-mark-mode . t)
-  (global-linum-mode . t)
-  (global-whitespace-mode . nil)
-  (global-hl-line-mode . t)
   (auto-image-file-mode . t)
   (auto-compression-mode . t)
   (auto-fill-mode . nil)
-  (tool-bar-mode . t)
-  (show-paren-mode . t)
+  ; (auto-fill-mode . t)
+  (auto-image-file-mode . t)
+  (column-number-mode . t)
+  (display-time-mode . t)
   (electric-pair-mode . t)
+  (fill-column . 120)
+  (global-hl-line-mode . t)
+  (global-linum-mode . t)
+  (global-whitespace-mode . nil)
+  (indent-tabs-mode . nil)
+  (line-number-mode . t)
+  (next-line-add-newlines . t)
+  (right-click-context-mode . t)
+  (show-paren-mode . t)
+  (tool-bar-mode . t)
+  (transient-mark-mode . t)
+  (truncate-lines . t)
+  (truncate-partial-width-windows . t)
+  (visible-bell . t)
+  (visual-line-mode . t)
   )
 
 (leaf cus-edit
@@ -284,6 +286,16 @@
     :url "https://github.com/antonj/Highlight-Indentation-for-Emacs"
     :added "2023-03-04"
     :ensure t)
+
+(leaf right-click-context
+  :doc "Right Click Context menu"
+  :req "emacs-24.3" "popup-0.5" "ordinal-0.0.1"
+  :tag "rightclick" "menu" "mouse" "emacs>=24.3"
+  :url "https://github.com/zonuexe/right-click-context"
+  :added "2023-03-10"
+  :emacs>= 24.3
+  :after ordinal
+  :ensure t)
 
 (leaf fontawesome
   :ensure t)
