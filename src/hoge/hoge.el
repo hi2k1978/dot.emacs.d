@@ -29,7 +29,7 @@
   "Set VALUE to KEY in DATA."
   (let ()
     (setq data (delq (assq key data) data))
-    (add-to-list 'data (cons key value))
+    (push (cons key value) data)
     (message "set-value-to-key: %s" data)
     data))
 
