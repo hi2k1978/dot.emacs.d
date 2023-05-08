@@ -1,7 +1,9 @@
 ;;; hoge.el --- Some summary -*- lexical-binding: t -*-
-;;; Commentary: Hoge Hoge aHoge --- Hoge
 
-;;; Code: Code
+;;; Commentary:
+
+;;; Code:
+
 (require 'json)
 (defvar json-data)
 (defvar json-src-file "hoge.json")
