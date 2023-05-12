@@ -3,8 +3,11 @@
 ;;; Commentary:
 
 ;;; Code:
-
+;;(require 'uuid)
 (require 'json)
+
+;; uuid: http://xahlee.info/emacs/emacs/elisp_generate_uuid.html
+
 (defvar json-data)
 (defvar json-src-file "hoge.json")
 (defvar json-dest-file "hogeout.json")
@@ -28,13 +31,12 @@
 (defun set-value-to-key (data key value)
   "Set VALUE to KEY in DATA."
   (let ()
-    (setq data (delq (assq key data) data))
-    (push (cons key value) data)
+    (setf (alist-get key data) value)
     (message "set-value-to-key: %s" data)
     data))
 
 (setq json-data (read-json-from-file json-src-file))
-(setq  json-data (set-value-to-key json-data 'hoge1 1660))
+(setq  json-data (set-value-to-key json-data 'hoge1 1800))
 (message "main: %s" json-data)
 (write-json-to-file json-dest-file json-data)
 

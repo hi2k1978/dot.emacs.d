@@ -613,11 +613,16 @@
   :added "2022-09-25"
   :emacs>= 25.1
   :ensure t)
+
+(leaf uuid
+    :doc "UUID's for EmacsLisp"
+    :tag "lisp"
+    :added "2023-05-09"
+    :ensure t)
+
 ;;
 ;; END: ここにいっぱい設定を書く
 ;;
-
-(provide 'init)
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
@@ -625,4 +630,3 @@
 
 ;;; init.el ends here
 
-(put 'narrow-to-region 'disabled nil)
