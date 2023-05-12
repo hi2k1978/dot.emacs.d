@@ -60,4 +60,3 @@
 (provide 'jsontest)
 
 ;;; jsontest.el ends here.
-
