@@ -12,6 +12,7 @@
 (defvar json-src-file "datasets/json_data.json")
 (defvar json-dest-directory "out/")
 (defvar json-dest-file "out/hogeout.json")
+(defvar json-buffer-name "jsontest-buffer")
 
 (defun read-data-from-json-file (file)
   "Read data from FILE."
@@ -24,7 +25,7 @@
 
 (defun write-data-to-json-file (file data)
   "Write DATA to FILE."
-  (let ((buffer "jsontest-buffer"))
+  (let ((buffer json-buffer-name))
     (when (null (file-directory-p json-dest-directory))
       (make-directory json-dest-directory))
     (generate-new-buffer buffer)
