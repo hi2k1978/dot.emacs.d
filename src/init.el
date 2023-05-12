@@ -194,16 +194,15 @@
   :doc "major mode for editing C and similar languages"
   :tag "builtin"
   :defvar (c-basic-offset)
-  :bind
-  ("C-c c" . compile)
+  :hook
+  (c-mode-common-hook . (lambda () (local-set-key (kbd "C-c C-c") #'compile)))
   :mode-hook
-  (c-mode-hook . ((c-set-style "bsd") (setq c-basic-offset 4)))
-  (c++-mode-hook . ((c-set-style "bsd") (setq c-basic-offset 4))))
+  (c-mode-common-hook . ((c-set-style "bsd") (setq c-basic-offset 4))))
 
-;; (leaf term
-;;   :bind
-;;   ("C-x o" . other-window))
-
+(leaf lisp-mode
+  :hook
+  (emacs-lisp-mode-hook . (lambda () (local-set-key (kbd "C-c C-c") #'eval-buffer)))
+  )
 
 (leaf delsel
   :doc "delete selection if you insert"
@@ -211,7 +210,7 @@
   :global-minor-mode delete-selection-mode)
 
 ;; (leaf dimmer
-;;   :doc "Visually highlight the selected buffer"
+;;   :doc "Visually highlight the selected buffer
 ;;   :req "emacs-25.1"
 ;;   :tag "editing" "faces" "emacs>=25.1"
 ;;   :url "https://github.com/gonewest818/dimmer.el"
