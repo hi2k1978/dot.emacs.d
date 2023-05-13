@@ -195,14 +195,26 @@
   :tag "builtin"
   :defvar (c-basic-offset)
   :hook
-  (c-mode-common-hook . (lambda () (local-set-key (kbd "C-c C-c") #'compile)))
+  (c-mode-common-hook . (lambda ()
+                          (local-set-key (kbd "C-c C-c") #'compile)
+                          (local-set-key (kbd "C-c C-r") #'recompile)
+                          (local-set-key (kbd "C-c C-h") #'c-hungry-backspace)
+                          (setq compile-command  (format "make -C ../../"))
+                          ))
   :mode-hook
-  (c-mode-common-hook . ((c-set-style "bsd") (setq c-basic-offset 4))))
+  (c-mode-common-hook . ((c-set-style "bsd")
+                         (setq c-basic-offset 4)))
+  :custom
+  (compilation-scroll-output . t))
+
 
 (leaf lisp-mode
   :hook
-  (emacs-lisp-mode-hook . (lambda () (local-set-key (kbd "C-c C-c") #'eval-buffer)))
-  )
+  (emacs-lisp-mode-hook . (lambda () (local-set-key (kbd "C-c C-c") #'eval-buffer))))
+
+(leaf messages-buffer-mode
+  :hook
+  (messages-buffer-mode-hook . auto-revert-mode))
 
 (leaf delsel
   :doc "delete selection if you insert"
