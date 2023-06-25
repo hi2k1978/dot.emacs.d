@@ -3,7 +3,7 @@
 ;;; Commentary:
 
 ;;; Code:
-;;(require 'uuid)
+(require 'uuid)
 (require 'json)
 
 ;; uuid: http://xahlee.info/emacs/emacs/elisp_generate_uuid.html

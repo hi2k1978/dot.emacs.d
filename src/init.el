@@ -198,8 +198,7 @@
   (c-mode-common-hook . (lambda ()
                           (local-set-key (kbd "C-c C-c") #'compile)
                           (local-set-key (kbd "C-c C-r") #'recompile)
-                          (local-set-key (kbd "C-c C-h") #'c-hungry-backspace)
-                          (setq compile-command  (format "make -C ../../"))
+                          ;(local-set-key (kbd "C-c C-h") #'c-hungry-backspace)
                           ))
   :mode-hook
   (c-mode-common-hook . ((c-set-style "bsd")
