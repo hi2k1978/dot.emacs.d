@@ -51,7 +51,7 @@
     :config
     ;; initialize leaf-keywords.el
     (leaf-keywords-init))
-    :ensure t)
+  :ensure t)
 
 ;;
 ;; BEGIN: ここにいっぱい設定を書く
@@ -62,7 +62,7 @@
   (leaf leaf-tree
     :custom ((imenu-list-size . 30)
              (imenu-list-position . 'left)))
-    :ensure t)
+  :ensure t)
 
 (leaf leaf-manager
   :ensure t)
@@ -70,7 +70,7 @@
 (leaf macrostep
   :bind
   ("C-c e" . macrostep-expand)
-    :ensure t)
+  :ensure t)
 
 (leaf zenburn-theme
   :doc "A low contrast color theme for Emacs."
@@ -84,8 +84,8 @@
 
 ;; emacsclient
 (add-hook 'before-make-frame-hook
-      #'(lambda ()
-          (add-to-list 'default-frame-alist '(alpha . 93))))
+          #'(lambda ()
+              (add-to-list 'default-frame-alist '(alpha . 93))))
 
 ;; supress warnings
 (leaf warnings
@@ -115,14 +115,13 @@
   (auto-image-file-mode . t)
   (auto-compression-mode . t)
   (auto-fill-mode . nil)
-  ; (auto-fill-mode . t)
   (auto-image-file-mode . t)
   (column-number-mode . t)
   (display-time-mode . t)
   (electric-pair-mode . t)
   (fill-column . 120)
+  (global-display-line-numbers-mode . t)
   (global-hl-line-mode . t)
-  (global-linum-mode . t)
   (global-whitespace-mode . nil)
   (indent-tabs-mode . nil)
   (line-number-mode . t)
@@ -198,7 +197,7 @@
   (c-mode-common-hook . (lambda ()
                           (local-set-key (kbd "C-c C-c") #'compile)
                           (local-set-key (kbd "C-c C-r") #'recompile)
-                          ;(local-set-key (kbd "C-c C-h") #'c-hungry-backspace)
+                                        ;(local-set-key (kbd "C-c C-h") #'c-hungry-backspace)
                           ))
   :mode-hook
   (c-mode-common-hook . ((c-set-style "bsd")
@@ -292,10 +291,10 @@
   :ensure t)
 
 (leaf highlight-indentation
-    :doc "Minor modes for highlighting indentation"
-    :url "https://github.com/antonj/Highlight-Indentation-for-Emacs"
-    :added "2023-03-04"
-    :ensure t)
+  :doc "Minor modes for highlighting indentation"
+  :url "https://github.com/antonj/Highlight-Indentation-for-Emacs"
+  :added "2023-03-04"
+  :ensure t)
 
 (leaf right-click-context
   :doc "Right Click Context menu"
@@ -625,10 +624,10 @@
   :ensure t)
 
 (leaf uuid
-    :doc "UUID's for EmacsLisp"
-    :tag "lisp"
-    :added "2023-05-09"
-    :ensure t)
+  :doc "UUID's for EmacsLisp"
+  :tag "lisp"
+  :added "2023-05-09"
+  :ensure t)
 
 ;;
 ;; END: ここにいっぱい設定を書く
