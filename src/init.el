@@ -546,6 +546,15 @@
   (setq tab-width 4)
   :ensure t)
 
+(leaf rust-mode
+  :doc "A major-mode for editing Rust source code"
+  :req "emacs-25.1"
+  :tag "languages" "emacs>=25.1"
+  :url "https://github.com/rust-lang/rust-mode"
+  :added "2023-09-01"
+  :emacs>= 25.1
+  :ensure t)
+
 (leaf dockerfile-mode
   :doc "Major mode for editing Docker's Dockerfiles"
   :req "emacs-24"
